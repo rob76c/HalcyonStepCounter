@@ -7,7 +7,7 @@ type ValueProps = {
 }
 
 const Value = ({ label, value }: ValueProps) => (
-  <View style={styles.valueContainer}>
+  <View>
     <Text style={styles.label}>{label}</Text>
     <Text style={styles.value}>{value}</Text>
   </View>
@@ -18,12 +18,12 @@ export default function App() {
     <View style={styles.container}>
       <Text>Hello!</Text>
 
-      <View style={{ flexDirection: "row" }}>
+      <View style={styles.values}>
         <Value label="Steps" value="1233" />
         <Value label="Distance" value=".5km" />
+        <Value label="Flights Climbed" value="5" />
       </View>
 
-      <Value label="Flights Climbed" value="5" />
       <StatusBar style="auto" />
     </View>
   );
@@ -36,16 +36,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 12,
   },
-  valueContainer: {
-    marginRight: 50,
-    marginVertical: 10,
+  values: {
+    flexDirection: 'row',
+    gap: 25,
+    flexWrap: 'wrap',
   },
   label: {
     color: "white",
     fontSize: 20,
   },
   value: {
-    fontSize: 35,
+    fontSize: 55,
     color: "#AFB3BE",
     fontWeight: "500",
   },
