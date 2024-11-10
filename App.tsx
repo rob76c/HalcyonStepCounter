@@ -2,18 +2,33 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import Value from "./src/componenets/value";
 import RingProgress from "./src/componenets/RingProgress";
-import AppleHealthKit from "react-native-health";
+import AppleHealthKit, { HealthInputOptions, HealthKitPermissions, HealthUnit,} from "react-native-health";
+import { useEffect, useState } from "react";
+import useHealthData from "./src/hooks/useHealthData";
+
+const permissions: HealthKitPermissions = {
+  permissions: {
+    read: [
+      AppleHealthKit.Constants.Permissions.Steps,
+      AppleHealthKit.Constants.Permissions.FlightsClimbed,
+      AppleHealthKit.Constants.Permissions.DistanceWalkingRunning,
+    ],
+    write: [],
+  },
+};
+
+const STEPS_GOAL= 10_000;
 
 export default function App() {
-  AppleHealthKit.initHealthKit();
+ const {steps,flights,distance}= useHealthData(new Date());
   return (
     <View style={styles.container}>
-    <RingProgress radius={100} strokeWidth= {35} progress= {0} />
+    <RingProgress radius={100} strokeWidth= {35} progress= {steps/STEPS_GOAL} />
 
       <View style={styles.values}>
-        <Value label="Steps" value="1233" />
-        <Value label="Distance" value=".5km" /> 
-        <Value label="Flights Climbed" value="5" />
+        <Value label="Steps" value={steps.toString()}/>
+        <Value label="Distance" value={`${(distance/1000).toFixed(2)} km`}/> 
+        <Value label="Flights Climbed" value={flights.toString()}/>
       </View>
 
       <StatusBar style="auto" />
