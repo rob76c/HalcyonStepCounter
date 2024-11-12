@@ -1,5 +1,7 @@
 import AppleHealthKit, { HealthInputOptions, HealthKitPermissions, HealthUnit,} from "react-native-health";
 import { useEffect, useState } from "react";
+import appleHealthKit from "react-native-health";
+import { Platform } from "react-native";
 
 const permissions: HealthKitPermissions = {
   permissions: {
@@ -18,6 +20,18 @@ const useHealthData = (date:Date) => {
   const [flights, setFlights]= useState(0);
   const[distance,setDistance]= useState(0);
   useEffect (() => {
+    if (Platform.OS!== 'ios') {
+      return;
+    }
+   AppleHealthKit.isAvailable((err, isAvailable) => {
+    if(err) {
+      console.log('Error getting permissions')
+      return;
+    }
+    if(!isAvailable) {
+      console.log('Apple Health not available');
+      return;
+    }
     AppleHealthKit.initHealthKit(permissions, (err) => {
       if (err) {
         console.log('Error getting permissions');
@@ -26,6 +40,8 @@ const useHealthData = (date:Date) => {
       setHasPermissions(true);
 
     });
+   });
+
   }, [])
 
   useEffect (()=> {
