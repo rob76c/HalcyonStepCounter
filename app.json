@@ -20,13 +20,33 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.rob76c.HalcyonStepCounter"
+      "package": "com.rob76c.HalcyonStepCounter",
+      "permissions": [
+        "android.permission.health.READ_STEPS",
+        "android.permission.health.READ_ACTIVE_CALORIES_BURNED",
+        "android.permission.health.READ_FLOORS_CLIMBED",
+        "android.permission.health.READ_DISTANCE",
+        "android.permission.health.READ_HEART_RATE"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "react-native-health"
+      "react-native-health",
+      "react-native-health-connect",
+      "expo-build-properties",
+      "expo-health-connect",
+      [
+        "expo-build-properties",
+        {
+          "android":{
+            
+            "minSdkVersion": 26
+
+          }
+        }
+      ]
     ]
   }
 }
