@@ -15,7 +15,7 @@ type RingProgressProps = {
   strokeWidth?: number;
   progress: number;
 };
-const color = "#EE0F55";
+const color = "blue";
 
 const RingProgress = ({
   radius = 120,

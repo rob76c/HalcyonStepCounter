@@ -99,6 +99,7 @@ const useHealthData = (date: Date) => {
       return;
     }
 
+    //TODO check for proper permissions
     // request permissions
     await requestPermission([
       { accessType: "read", recordType: "Steps" },
