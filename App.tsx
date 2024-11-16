@@ -65,6 +65,7 @@ export default function App() {
         <Value label="Steps" value={steps.toString()} />
         <Value label="Distance" value={`${(distance / 1000).toFixed(2)} km`} />
         <Value label="Flights Climbed" value={flights.toString()} />
+        <Value label="HearRate" value={"100"} />
       </View>
 
       <StatusBar style="auto" />
