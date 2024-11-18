@@ -28,7 +28,7 @@ export default function App() {
   const [date, setDate] = useState(new Date());
   const { steps, flights, distance } = useHealthData(date);
 
-  const changeDate = (numDays) => {
+  const changeDate = (numDays: number) => {
     //Create copy of current date
     const currentDate = new Date(date);
 
@@ -65,7 +65,8 @@ export default function App() {
         <Value label="Steps" value={steps.toString()} />
         <Value label="Distance" value={`${(distance / 1000).toFixed(2)} km`} />
         <Value label="Flights Climbed" value={flights.toString()} />
-        <Value label="HearRate" value={"100"} />
+        {/* Todo make value for heartrate, and calories burned*/}
+        {/* <Value label="HearRate" value={"100"} /> */}
       </View>
 
       <StatusBar style="auto" />
